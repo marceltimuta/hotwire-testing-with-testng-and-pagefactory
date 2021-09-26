@@ -41,28 +41,32 @@ public class HomePage extends BasePage {
         driver.get(BASE_URL);
     }
 
-    public void selectBundleOption() {
+    public HomePage selectBundleOption() {
         bundleOption.click();
+        return this;
     }
 
-    public void enterFlight(String from, String to) {
+    public HomePage enterFlight(String from, String to) {
         flyFromInput.sendKeys(from + Keys.ENTER);
         flyToInput.sendKeys(to + Keys.ENTER);
+        return this
     }
 
-    public void enterDepartureAndReturning() {
+    public HomePage enterDepartureAndReturning(int departureInDays, int returnInDays) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
         LocalDate today = LocalDate.now();
-        LocalDate nextDay = today.plusDays(1);
-        LocalDate after20Days = today.plusDays(20);
+        LocalDate departureDate = today.plusDays(departureInDays);
+        LocalDate returningDate = today.plusDays(returnInDays);
 
-        departingDate.sendKeys(nextDay.toString());
-        returningDate.sendKeys(after20Days.toString());
+        departingDate.sendKeys(departureDate.toString());
+        returningDate.sendKeys(returningDate.toString());
+        return this;
     }
 
-    public void findADeal() {
+    public ResultsPage findADeal() {
         findADealButton.click();
+        return new ResultsPage(driver);
     }
 
 }

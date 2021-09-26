@@ -26,11 +26,11 @@ public class FlightSearchTest {
 
     @Test
     public void testSearchFlight() {
-        homePage.open();
-        homePage.selectBundleOption();
-        homePage.enterFlight("SFO", "LAX");
-        homePage.enterDepartureAndReturning();
-        homePage.findADeal();
+        homePage.open()
+                .selectBundleOption()
+                .enterFlight("SFO", "LAX")
+                .enterDepartureAndReturning(1, 20);
+        resultsPage.findADeal();
 
         Assert.assertTrue(resultsPage.getAvailableVacationsCount() > 0, "No results found");
     }
