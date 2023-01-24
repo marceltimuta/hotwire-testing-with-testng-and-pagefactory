@@ -6,10 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class HomePage extends BasePage {
     private WebDriver driver;
@@ -27,7 +25,7 @@ public class HomePage extends BasePage {
     private WebElement departingDate;
 
     @FindBy(id = "input2-farefinder-package-date")
-    private WebElement returningDate;
+    private WebElement returningDateField;
 
     @FindBy(className = "submit-button")
     private WebElement findADealButton;
@@ -49,7 +47,7 @@ public class HomePage extends BasePage {
     public HomePage enterFlight(String from, String to) {
         flyFromInput.sendKeys(from + Keys.ENTER);
         flyToInput.sendKeys(to + Keys.ENTER);
-        return this
+        return this;
     }
 
     public HomePage enterDepartureAndReturning(int departureInDays, int returnInDays) {
@@ -60,7 +58,7 @@ public class HomePage extends BasePage {
         LocalDate returningDate = today.plusDays(returnInDays);
 
         departingDate.sendKeys(departureDate.toString());
-        returningDate.sendKeys(returningDate.toString());
+        returningDateField.sendKeys(returningDate.toString());
         return this;
     }
 
